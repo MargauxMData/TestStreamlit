@@ -1,34 +1,42 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+pd.DataFrame.iteritems = pd.DataFrame.items
 
-
-st.title('Hello Wilders, welcome to my application!')
-st.write("I enjoy to discover streamlit possibilities")
-
-#link = "https://raw.githubusercontent.com/murpi/wilddata/master/quests/weather2019.csv"
-#df_weather = pd.read_csv(link)
-
-# façon 1 d'afficher :
-#st.write(df_weather)
-
-# façon 2 d'afficher : Here we use "magic commands":
-#df_weather
-
-# ajouter un graphique avec la bibli de streamlit
-#st.line_chart(df_weather['MAX_TEMPERATURE_C'])
-
-#ajouter un graphique avec nos biblis habituelles : matplot, seaborn..
-# on ne peut pas utiliser plt.show mais st.pyplot(nom_variable, figure) si c'est avec matplotlib
-# pour plotly , la syntaxe est la suivante :  st.plotly_chart()
-#viz_correlation = sns.heatmap(df_weather.corr(), 
-#center=0,
-#cmap = sns.color_palette("vlag", as_cmap=True)
-#)
-
-#st.pyplot(viz_correlation.figure)
-
-# on peut aussi faire des calculs depuis un input
-name = st.text_input("Please give me your name :")
-name_length = len(name)
-st.write("Your name has ",name_length,"characters")
+st.set_page_config(
+    page_title='Quête Streamlit',
+    #page_icon='':voiture:'',
+    layout='wide',
+    initial_sidebar_state='expanded',
+)
+st.title('Quête Streamlit')
+st.write('Analyse')
+# Charger les données
+df = pd.read_csv('https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv')
+st.sidebar.header('Please Filter Here:')
+country = st.sidebar.multiselect(
+    'Select Country:',
+    options=df['continent'].unique(),
+    default=df['continent'].unique()
+)
+# Filter the DataFrame based on selected countries
+filtered_df = df[df['continent'].isin(country)]
+st.write(filtered_df)
+#Histogramme
+fig_histogram = px.histogram(filtered_df, x='mpg', nbins=30,
+                             title='Distribution de Miles per Gallon',
+                             labels={'mpg': 'Miles per Gallon'})
+st.plotly_chart(fig_histogram, use_container_width=True)
+# Graphique Box
+fig_box = px.box(filtered_df, x='continent', y='mpg', color='continent',
+                 title='Miles per Gallon by Continent',
+                 labels={'mpg': 'Miles per Gallon'})
+st.plotly_chart(fig_box, use_container_width=True)
+# Graphique Bar
+fig_bar = px.bar(filtered_df, x='continent', y='hp', color='continent',
+                   title='Horsepower by Continent',
+                   labels={'horsepower': 'Horsepower'})
+st.plotly_chart(fig_bar, use_container_width=True)
