@@ -46,6 +46,10 @@ def afficher_kpi_global_films():
 def afficher_kpi_acteurs():
     st.title("Acteurs")
     # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Acteurs ici
+    merged_df = pd.read_csv('C:/PROJET2/Working/Database mergée/df_KPI_acteurs.tsv', sep="\t")
+    df_movies_only = merged_df.loc[merged_df["titleType"].isin(['movie'])]
+    top_30_actors = df_movies_only['primaryName'].value_counts().head(30)
+    top_30_actors 
 
 
 # Fonction pour afficher la page KPI Directeurs
