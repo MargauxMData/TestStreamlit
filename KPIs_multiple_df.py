@@ -27,8 +27,9 @@ def afficher_kpi_global_films():
     
     # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI global
     # ajouter uniquement les commandes qui permettent d'arriver à notre résultat
-    df = pd.read_csv("C:/test_streamlit/TestStreamlit/imdb_clean_pays.tsv")
+    df = pd.read_csv("C:/PROJET2/Working/Databases clean/imdb_clean_pays_KPI.tsv")
     df = df[df['production_companies_country1'] != 'XC']
+    
     
 
     # quand on arrive au graphique de notre KPI conformément à notre script ipynb, il faut utiliser la méthodo streamlit et plus matplotlib
@@ -45,6 +46,7 @@ def afficher_kpi_global_films():
 def afficher_kpi_acteurs():
     st.title("Acteurs")
     # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Acteurs ici
+
 
 # Fonction pour afficher la page KPI Directeurs
 def afficher_kpi_directeurs():
