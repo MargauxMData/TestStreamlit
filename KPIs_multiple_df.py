@@ -28,16 +28,16 @@ def afficher_kpi_global_films():
     # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI global
     # ajouter uniquement les commandes qui permettent d'arriver à notre résultat
     df = pd.read_csv("C:/PROJET2/Working/Databases clean/imdb_clean_pays_KPI.tsv")
-    df = df[df['production_companies_country1'] != 'XC']
+    df['production_companies_country1'] = df['production_companies_country1'].replace("URSS", "Fédération De Russie")
     
-    
-
     # quand on arrive au graphique de notre KPI conformément à notre script ipynb, il faut utiliser la méthodo streamlit et plus matplotlib
-    
-    fig = px.bar(df['production_companies_country1'].value_counts().reset_index().head(15),title='Répartition du nombre de films produits par pays',text='production_companies_country1')
+    fig = px.bar(df['production_companies_country1'].value_counts().reset_index().head(15),
+                 title='Répartition du nombre de films produits par pays',
+                 text='production_companies_country1', color_continuous_scale='Blues')
 
     fig.update_layout(title_x=0.5)
 
+    
     # façon 1 d'afficher :
     
     st.plotly_chart(fig)
