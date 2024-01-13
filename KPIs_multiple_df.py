@@ -15,9 +15,9 @@ def afficher_kpi():
 
     # Affichage des informations en fonction de la sous-catégorie sélectionnée
     if selected_kpi_category == "Acteurs":
-        afficher_kpi_action()
+        afficher_kpi_acteurs()
     elif selected_kpi_category == "Directeurs":
-        afficher_kpi_crime()
+        afficher_kpi_directeurs()
     elif selected_kpi_category == "Vue globale sur le monde cinématographique":
         afficher_kpi_global_films()
 
@@ -41,15 +41,15 @@ def afficher_kpi_global_films():
     
     st.plotly_chart(fig)
     
-# Fonction pour afficher la page KPI Action
-def afficher_kpi_action():
+# Fonction pour afficher la page KPI Acteurs
+def afficher_kpi_acteurs():
     st.title("Acteurs")
-    # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Action ici
+    # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Acteurs ici
 
-# Fonction pour afficher la page KPI Crime
-def afficher_kpi_crime():
+# Fonction pour afficher la page KPI Directeurs
+def afficher_kpi_directeurs():
     st.title("Directeurs")
-    # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Crime ici
+    # Ajoutez le code pour afficher les informations spécifiques à la catégorie KPI Directeurs ici
     
 # Fonction pour afficher la page Homepage
 def afficher_homepage():
