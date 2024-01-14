@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state='expanded',
 )
 st.title('Quête Streamlit')
-st.markdown("## Vue globale de la quête Streamlit")
+st.markdown("Vue globale de la quête Streamlit")
 st.write('Analyse')
 # Charger les données
 df = pd.read_csv('https://raw.githubusercontent.com/murpi/wilddata/master/quests/cars.csv')
